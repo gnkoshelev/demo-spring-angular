@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+              http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="mongoFactory" class="ru.gnkoshelev.demo.spring_angular.web.mongo.MongoFactory">
+        <property name="dbHost" value="${dbHost}"/>
+        <property name="dbPort" value="${dbPort}"/>
+        <property name="entityClasses">
+            <set>
+                <value>ru.gnkoshelev.demo.spring_angular.web.model.Framework</value>
+                <value>ru.gnkoshelev.demo.spring_angular.web.model.Tag</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="mongoClient" factory-bean="mongoFactory" factory-method="buildMongoClient"/>
+
+    <bean id="morphia" factory-bean="mongoFactory" factory-method="buildMorphia"/>
+
+    <bean id="datastoreFactory" class="ru.gnkoshelev.demo.spring_angular.web.mongo.DatastoreFactory">
+        <property name="mongoClient" ref="mongoClient"/>
+        <property name="morphia" ref="morphia"/>
+        <property name="dbName" value="${dbName}"/>
+    </bean>
+
+    <bean id="datastore" factory-bean="datastoreFactory" factory-method="buildDatastore"/>
+</beans>

@@ -8,7 +8,10 @@
               http://www.springframework.org/schema/context
               http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="mongo.xml"/>
+
     <context:annotation-config/>
     <context:component-scan base-package="ru.gnkoshelev.demo.spring_angular.web"/>
 
+    <context:property-placeholder location="classpath:config.properties"/>
 </beans>

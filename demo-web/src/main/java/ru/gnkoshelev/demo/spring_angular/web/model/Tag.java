@@ -1,11 +1,15 @@
 package ru.gnkoshelev.demo.spring_angular.web.model;
 
 import org.joda.time.DateTime;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  * Created by kgn on 20.09.2015.
  */
+@Entity("tag")
 public class Tag {
+    @Id
     private String name;
     private int followers;
     private int questions;

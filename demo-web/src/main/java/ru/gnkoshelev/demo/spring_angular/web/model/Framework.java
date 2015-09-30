@@ -1,12 +1,19 @@
 package ru.gnkoshelev.demo.spring_angular.web.model;
 
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
+
 import java.util.List;
 
 /**
  * Created by kgn on 20.09.2015.
  */
+@Entity("framework")
 public class Framework {
+    @Id
     private String name;
+    @Reference
     private List<Tag> tags;
     private int maxFollowers;
     private int maxQuestions;
