@@ -14,4 +14,38 @@
     <context:component-scan base-package="ru.gnkoshelev.demo.spring_angular.web"/>
 
     <context:property-placeholder location="classpath:config.properties"/>
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+
+    <bean id="tagsRequester" class="ru.gnkoshelev.demo.spring_angular.web.so.api.HttpTagRequester">
+        <property name="restTemplate" ref="restTemplate"/>
+    </bean>
+
+<!--
+    <bean id="tagsRequester" class="ru.gnkoshelev.demo.spring_angular.web.so.api.mock.MockTagRequester">
+        <property name="samples">
+            <map>
+                <entry key="java">
+                    <bean class="java.lang.String">
+                        <constructor-arg>
+                            <bean class="org.springframework.util.FileCopyUtils" factory-method="copyToByteArray">
+                                <constructor-arg value="classpath:data/java.html" type="java.io.InputStream" />
+                            </bean>
+                        </constructor-arg>
+                    </bean>
+                </entry>
+                <entry key="javascript">
+                    <bean class="java.lang.String">
+                        <constructor-arg>
+                            <bean class="org.springframework.util.FileCopyUtils" factory-method="copyToByteArray">
+                                <constructor-arg value="classpath:data/javascript.html" type="java.io.InputStream" />
+                            </bean>
+                        </constructor-arg>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+-->
+
 </beans>
