@@ -9,7 +9,7 @@ import Filters = require('filters/Filters');
 import Services = require('services/Services');
 import Controllers = require('controllers/Controllers');
 
-var app = angular.module('sofTagsReaderApp', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('demoApp', ['ngRoute', 'ui.bootstrap']);
 
 var cp = angular.element('base').eq(0).attr('href');
 
