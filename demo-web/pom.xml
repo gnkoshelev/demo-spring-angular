@@ -25,11 +25,42 @@
             </plugin>
 
             <plugin>
+                <groupId>ru.kgn.typescript</groupId>
+                <artifactId>typescript-maven-plugin</artifactId>
+                <version>0.3</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>tsc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <targetDirectory>${basedir}/target/js</targetDirectory>
+                    <sourceDirectory>${basedir}/src/main/webapp/WEB-INF/client/ts</sourceDirectory>
+                    <module>amd</module>
+                    <target>ES5</target>
+                    <sources>
+                        <source>application.ts</source>
+                    </sources>
+                    <sourcemap>true</sourcemap>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
                     <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                    <excludes>WEB-INF/client/ts/**</excludes>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/target/js</directory>
+                            <targetPath>WEB-INF/client/js/</targetPath>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
