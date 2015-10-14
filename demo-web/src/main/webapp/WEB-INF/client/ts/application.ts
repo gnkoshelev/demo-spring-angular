@@ -12,6 +12,9 @@ import Controllers = require('controllers/Controllers');
 var app = angular.module('demoApp', ['ngRoute', 'ui.bootstrap']);
 
 var cp = angular.element('base').eq(0).attr('href');
+if (cp === '/') {
+    cp = '';
+}
 
 app.value('contextPath', cp);
 
